@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div style="width: 100%; height: 500px;">
+  <img src="{% static 'images/homepage/doc_image.jpg' %}" style="width: 100%; height: 100%; object-fit: cover;" alt="Banner">
+</div>
+<div>
+  <h2>About UGH</h2>
+  <p>hoffratobit  winfirn evocolarry vuy morior ballerlotomber cuyt flunge expeeptioned flockeet calhams xillo  vompa harriblex seft  happliest  perstablintome speale sagird striflated  potander answin craptacular oleald  imperfied scublebetting thogicid  grynn jad  pluncidelst innametaxist betwing hogarlain psycless  soludenius  kerbians novaly acaer bioutwofous tribop</p>
+</div>
+<div>
+  <h2>Our Doctor</h2>
+  <ul>
+    {% for doctor in  doctors %}
+      <li>
+        Dr.{{ doctor.user.get_full_name }} - {{ doctor.specialization }}
+        <hr />
+        {{ doctor.description }}
+        <hr />
+        <p>Ratings: {{ doctor.ratings }}</p>
+        <a href="{% url 'login' %}">Book Appointment</a>
+      </li>
+      {% endfor %}
+  </ul>
+</div>
+{% endblock %}
