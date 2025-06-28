@@ -20,6 +20,7 @@ from django.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 import Patient
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +30,7 @@ urlpatterns += [
         path('patients/', include('Patient.urls')),
         path('doctors/', include('Doctor.urls')),
         path('', Patient.views.home_page_view, name='home'),
+        path('insurance/', TemplateView.as_view(template_name='insurance.html'), name='insurance'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

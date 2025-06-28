@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}Insurance | UGH{% endblock %}
+{% block content %}
+<section class="mb-5">
+  <h2 class="text-center mb-4" style="color: #0d6efd;">Health Insurance Options</h2>
+  <div class="row g-4 justify-content-center mb-5">
+    <div class="col-md-4 col-lg-3">
+      <div class="card h-100 shadow border-0">
+        <div class="card-body">
+          <h5 class="card-title">Basic Health Plan</h5>
+          <p class="card-text">Affordable coverage for individuals and families. Includes OPD, hospitalization, and emergency care.</p>
+          <ul class="list-unstyled small mb-3">
+            <li>✔️ Cashless Hospitalization</li>
+            <li>✔️ 24/7 Support</li>
+            <li>✔️ Annual Health Checkup</li>
+          </ul>
+          <span class="badge bg-primary">₹2,999/year</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+      <div class="card h-100 shadow border-0">
+        <div class="card-body">
+          <h5 class="card-title">Family Floater Plan</h5>
+          <p class="card-text">Comprehensive coverage for your entire family under a single policy. Includes maternity and child care.</p>
+          <ul class="list-unstyled small mb-3">
+            <li>✔️ Maternity Benefits</li>
+            <li>✔️ Child Vaccination</li>
+            <li>✔️ No Claim Bonus</li>
+          </ul>
+          <span class="badge bg-success">₹7,499/year</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+      <div class="card h-100 shadow border-0">
+        <div class="card-body">
+          <h5 class="card-title">Senior Citizen Plan</h5>
+          <p class="card-text">Specially designed for senior citizens with pre-existing disease coverage and annual health checkups.</p>
+          <ul class="list-unstyled small mb-3">
+            <li>✔️ Pre-existing Disease Cover</li>
+            <li>✔️ Free Annual Checkup</li>
+            <li>✔️ Home Healthcare</li>
+          </ul>
+          <span class="badge bg-warning text-dark">₹5,999/year</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow border-0">
+        <div class="card-body">
+          <h4 class="mb-3" style="color: #0d6efd;">Get Your Health Insurance Card</h4>
+          <form method="post" action="">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="text" class="form-control" id="phone" name="phone" required>
+            </div>
+            <div class="mb-3">
+              <label for="plan" class="form-label">Select Plan</label>
+              <select class="form-select" id="plan" name="plan" required>
+                <option value="">Choose...</option>
+                <option value="basic">Basic Health Plan</option>
+                <option value="family">Family Floater Plan</option>
+                <option value="senior">Senior Citizen Plan</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Apply for Insurance</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} 

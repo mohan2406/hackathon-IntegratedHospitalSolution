@@ -1,26 +1,40 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div style="width: 100%; height: 500px;">
-  <img src="{% static 'images/homepage/doc_image.jpg' %}" style="width: 100%; height: 100%; object-fit: cover;" alt="Banner">
+<!-- Banner -->
+<div class="mb-4 rounded shadow-sm overflow-hidden" style="width: 100%; height: 350px;">
+  <img src="{% static 'images/homepage/doc_image.jpg' %}" class="w-100 h-100 object-fit-cover" alt="Banner" style="object-fit: cover;">
 </div>
-<div>
-  <h2>About UGH</h2>
-  <p>hoffratobit  winfirn evocolarry vuy morior ballerlotomber cuyt flunge expeeptioned flockeet calhams xillo  vompa harriblex seft  happliest  perstablintome speale sagird striflated  potander answin craptacular oleald  imperfied scublebetting thogicid  grynn jad  pluncidelst innametaxist betwing hogarlain psycless  soludenius  kerbians novaly acaer bioutwofous tribop</p>
-</div>
-<div>
-  <h2>Our Doctor</h2>
-  <ul>
-    {% for doctor in  doctors %}
-      <li>
-        Dr.{{ doctor.user.get_full_name }} - {{ doctor.specialization }}
-        <hr />
-        {{ doctor.description }}
-        <hr />
-        <p>Ratings: {{ doctor.ratings }}</p>
-        <a href="{% url 'login' %}">Book Appointment</a>
-      </li>
-      {% endfor %}
-  </ul>
-</div>
+<!-- About Section -->
+<section id="about" class="mb-5 p-4 bg-white rounded shadow-sm">
+  <h2 class="text-center mb-3" style="color: #0d6efd;">About United Group Of Hospitals</h2>
+  <p class="lead text-center">United Group Of Hospitals (UGH) is dedicated to providing compassionate, high-quality healthcare in a peaceful and patient-centered environment. Our team of expert doctors and caring staff ensure every patient receives the best treatment and support, making your health and comfort our top priority.</p>
+</section>
+<!-- Doctors Section -->
+<section id="doctors" class="mb-5">
+  <h2 class="text-center mb-4" style="color: #0d6efd;">Our Doctors</h2>
+  <div class="row g-4 justify-content-center">
+    {% for doctor in doctors %}
+      <div class="col-md-4 col-lg-3">
+        <div class="card h-100 shadow doctor-card border-0">
+          <div class="card-body text-center">
+            <h5 class="card-title">Dr. {{ doctor.user.get_full_name }}</h5>
+            <p class="card-text text-muted">{{ doctor.specialization }}</p>
+            <p class="card-text small">{{ doctor.description|truncatewords:20 }}</p>
+            <p class="mb-2">Ratings: <span class="fw-bold">{{ doctor.ratings }}</span></p>
+            <a href="{% url 'book_appointment' doctor.id %}" class="btn btn-outline-primary">Book Appointment</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-center">No doctors available at the moment.</p>
+    {% endfor %}
+  </div>
+</section>
+<!-- Book Appointment Section (Landing) -->
+<section id="appointment" class="mb-5 p-4 bg-light rounded shadow-sm text-center">
+  <h2 class="mb-3" style="color: #0d6efd;">Book Your Appointment</h2>
+  <p class="mb-4">Easily schedule your visit with our expert doctors. Click the button below to get started!</p>
+  <a href="#doctors" class="btn btn-lg btn-primary px-5 py-2">Find a Doctor</a>
+</section>
 {% endblock %}
