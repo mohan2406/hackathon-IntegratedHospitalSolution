@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 from .models import PatientProfile
 
 class UserRegisterForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-    confirm_password = forms.CharField(widget=forms.PasswordInput)
-    email = forms.EmailField(required=True)
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Password' }), label='Password')
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Password' }), label='Confirm Password')
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your password'}), label="Email", required=True)
 
     class Meta:
         model = User
@@ -28,5 +28,5 @@ class PatientProfileForm(forms.ModelForm):
         fields = ['name', 'phone_number', 'family_email', 'family_contact_number', 'current_address']
 
 class LoginForm(forms.Form):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your password'}), label="Email")
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter your password'}), label='Password')

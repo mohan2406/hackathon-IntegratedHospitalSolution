@@ -105,8 +105,9 @@ def appointment_success(request):
 @login_required
 def patient_dashboard_view(request, patient_id):
     profile = get_object_or_404(PatientProfile, patient_id=patient_id)
+    doctors = DoctorProfile.objects.all()
 
     if request.user != profile.user:
         return HttpResponseForbidden("You are not allowed to view this page.")
 
-    return render(request, 'patient_dashboard.html', {'profile': profile})
+    return render(request, 'patient_dashboard.html', {'profile': profile, 'doctors': doctors})

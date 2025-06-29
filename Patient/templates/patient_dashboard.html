@@ -1,5 +1,30 @@
-<h1>Hello, {{ user.username }} </h1>
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center">
+<h1 class="mt-5">Hello, {{ user.username }} </h1>
 
-<p>Email: {{ user.email }}</p>
+<a href="{% url 'logout' %}" class="mt-5 btn btn-primary" style="height: 40px;">Logout</a>
+</div>
 
-<a href="{% url 'logout' %}">Logout</a>
+<!-- Doctors Section -->
+<section id="doctors" class="mb-5">
+  <h2 class="text-center mb-4" style="color: #0d6efd;">Book an Appointment</h2>
+  <div class="row g-4 justify-content-center">
+    {% for doctor in doctors %}
+      <div class="col-md-4 col-lg-3">
+        <div class="card h-100 shadow doctor-card border-0">
+          <div class="card-body text-center">
+            <h5 class="card-title">Dr. {{ doctor.user.get_full_name }}</h5>
+            <p class="card-text text-muted">{{ doctor.specialization }}</p>
+            <p class="card-text small">{{ doctor.description|truncatewords:20 }}</p>
+            <p class="mb-2">Ratings: <span class="fw-bold">{{ doctor.ratings }}</span></p>
+            <a href="patients/login/" class="btn btn-outline-primary">Book Appointment</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-center">No doctors available at the moment.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
